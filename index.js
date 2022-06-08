@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
     port: "3306",
     user: "root",
     password: "",
-    database:"employee_tracker"
+    database: "employee_tracker"
 })
 connection.connect(function (err) {
     if (err) throw err;
@@ -55,24 +55,73 @@ function init() {
     })
 }
 
-function viewDept(){
-    connection.query("select * from department;",function(err,data){
-        if(err)console.log(err)
+function viewDept() {
+    connection.query("select * from department;", function (err, data) {
+        if (err) console.log(err)
         console.table(data)
         init()
     })
 }
-function viewRol(){
-    connection.query("select * from roles;",function(err,data){
-        if(err)console.log(err)
+function viewRol() {
+    connection.query("select * from roles;", function (err, data) {
+        if (err) console.log(err)
         console.table(data)
         init()
     })
 }
-function viewEmp(){
-    connection.query("select * from employee;",function(err,data){
-        if(err)console.log(err)
+function viewEmp() {
+    connection.query("select * from employee;", function (err, data) {
+        if (err) console.log(err)
         console.table(data)
         init()
+    })
+}
+
+function addemp() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter Employee firstname",
+            name: "first_name"
+        },
+        {
+            type: "input",
+            message: "Enter Employee lastname",
+            name: "last_name"
+        },
+        {
+            type: "list",
+            message: "Enter Employee role",
+            name: "role_id",
+            choices: [
+                { name: "Manager-IT", value: 1 },
+                { name: "Manager_Accounting", value: 2 },
+                { name: "Manager_Sales", value: 3 },
+                { name: "Manager_Marketing", value: 4 },
+                { name: "Intern-IT", value: 5 },
+                { name: "Intern_Accounting", value: 6 },
+                { name: "Intern_Sales", value: 7 },
+                { name: "Intern_Marketing", value: 8 },
+            ]
+        },
+        {
+            type: "list",
+            message: "Enter manager's id",
+            name: "manager_id",
+            choices: [
+                { name: "Henry Goldman", value: 1 },
+                { name: "Melvin Barr", value: 2 },
+                { name: "Randy Kamal", value: 3 },
+                { name: "Yasmin Malik", value: 4 }
+            ]
+        },
+
+    ]).then(({ first_name, last_name, role_id, manager_id }) => {
+        connection.query("insert into employee(first_name,last_name,role_id,manager_id) values(?,?,?,?);",
+            [first_name, last_name, role_id, manager_id], function (err, data) {
+                if (err) console.log(err)
+                console.table(data)
+                init()
+            })
     })
 }

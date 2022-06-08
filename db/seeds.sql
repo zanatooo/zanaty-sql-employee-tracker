@@ -12,7 +12,7 @@ values('Manager',12323,1),('Manager',82173,2),
 
 insert into employee(first_name,last_name,role_id,manager_id)
 values
-("Henry","Goldaman",1,NULL),
+("Henry","Goldman",1,NULL),
 ("Melvin","Barr",2,NULL),
 ("Randy","Kamal",3,NULL),
 ("Yasmin","Malik",4,NULL),
