@@ -77,6 +77,55 @@ function viewEmp() {
     })
 }
 
+function addDept() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter Employee firstname",
+            name: "first_name"
+        },
+        {
+            type: "input",
+            message: "Enter Employee lastname",
+            name: "last_name"
+        },
+        {
+            type: "list",
+            message: "Enter Employee role",
+            name: "role_id",
+            choices: [
+                { name: "Manager-IT", value: 1 },
+                { name: "Manager_Accounting", value: 2 },
+                { name: "Manager_Sales", value: 3 },
+                { name: "Manager_Marketing", value: 4 },
+                { name: "Intern-IT", value: 5 },
+                { name: "Intern_Accounting", value: 6 },
+                { name: "Intern_Sales", value: 7 },
+                { name: "Intern_Marketing", value: 8 },
+            ]
+        },
+        {
+            type: "list",
+            message: "Enter manager's id",
+            name: "manager_id",
+            choices: [
+                { name: "Henry Goldman", value: 1 },
+                { name: "Melvin Barr", value: 2 },
+                { name: "Randy Kamal", value: 3 },
+                { name: "Yasmin Malik", value: 4 }
+            ]
+        },
+
+    ]).then(({ first_name, last_name, role_id, manager_id }) => {
+        connection.query("insert into employee(first_name,last_name,role_id,manager_id) values(?,?,?,?);",
+            [first_name, last_name, role_id, manager_id], function (err, data) {
+                if (err) console.log(err)
+                console.table(data)
+                init()
+            })
+    })
+}
+
 function addemp() {
     inquirer.prompt([
         {
@@ -119,6 +168,44 @@ function addemp() {
     ]).then(({ first_name, last_name, role_id, manager_id }) => {
         connection.query("insert into employee(first_name,last_name,role_id,manager_id) values(?,?,?,?);",
             [first_name, last_name, role_id, manager_id], function (err, data) {
+                if (err) console.log(err)
+                console.table(data)
+                init()
+            })
+    })
+}
+function addrol() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter role Title",
+            name: "title"
+        },
+        {
+            type: "input",
+            message: "Enter salary",
+            name: "salary"
+        },
+        {
+            type: "list",
+            message: "Enter department_id",
+            name: "deparment_id",
+            choices: [
+                { name: "Manager-IT", value: 1 },
+                { name: "Manager_Accounting", value: 2 },
+                { name: "Manager_Sales", value: 3 },
+                { name: "Manager_Marketing", value: 4 },
+                { name: "Intern-IT", value: 5 },
+                { name: "Intern_Accounting", value: 6 },
+                { name: "Intern_Sales", value: 7 },
+                { name: "Intern_Marketing", value: 8 },
+            ]
+        },
+     
+
+    ]).then(({ title, salary, department_id}) => {
+        connection.query("insert into roles(title,salary,deparment_id) values(?,?,?);",
+            [title, salary, department_id], function (err, data) {
                 if (err) console.log(err)
                 console.table(data)
                 init()
