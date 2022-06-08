@@ -20,6 +20,6 @@ CREATE TABLE employee (
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   role_id int references role(id),
-  manager_id int references employee(id)
+  manager_id int references employee(id) on delete set null
   
 );

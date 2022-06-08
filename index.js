@@ -1,11 +1,12 @@
 const mysql = require("mysql2")
 const inquirer = require("inquirer")
-
+require("console.table")
 const connection = mysql.createConnection({
     host: "localhost",
     port: "3306",
     user: "root",
-    password: ""
+    password: "",
+    database:"employee_tracker"
 })
 connection.connect(function (err) {
     if (err) throw err;
@@ -55,5 +56,23 @@ function init() {
 }
 
 function viewDept(){
-    
+    connection.query("select * from department;",function(err,data){
+        if(err)console.log(err)
+        console.table(data)
+        init()
+    })
+}
+function viewRol(){
+    connection.query("select * from roles;",function(err,data){
+        if(err)console.log(err)
+        console.table(data)
+        init()
+    })
+}
+function viewEmp(){
+    connection.query("select * from employee;",function(err,data){
+        if(err)console.log(err)
+        console.table(data)
+        init()
+    })
 }
