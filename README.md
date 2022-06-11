@@ -1,11 +1,12 @@
 # zanaty-sql-employee-tracker
-Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called content management systems (CMS). Your assignment this week is to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
-Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
+This is a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
+We, Developers, frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called content management systems (CMS). 
+
+Here is a [walkthrough video]() that demonstrates its functionality and all of the following acceptance criteria being met. 
 
 User Story
-AS A business owner
-I WANT to be able to view and manage the departments, roles, and employees in my company
+AS A business owner I WANT to be able to view and manage the departments, roles, and employees in my company
 SO THAT I can organize and plan my business
 Acceptance Criteria
 GIVEN a command-line application that accepts user input
@@ -25,23 +26,25 @@ WHEN I choose to add an employee
 THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
-Mock-Up
-The following video shows an example of the application being used from the command line:
 
-A video thumbnail shows the command-line employee management application with a play button overlaying the view.
+[Screenshots](/images/Downloading%20Json.png)
+[Screenshots](/images/starting%20npm.png)
+[Screenshots](/images/View%20Department-role-add.png)
+[Screenshots](/images/View%20Departments.png)
+[Screenshots](/images/View%20Employees.png)
+[Screenshots](/images/Viow%20Department-role.png)
+
+
 
 Getting Started
-You’ll need to use the MySQL2 package (Links to an external site.) to connect to your MySQL database and perform queries, the Inquirer package (Links to an external site.) to interact with the user via the command line, and the console.table package (Links to an external site.) to print MySQL rows to the console.
+I use the MySQL2 package to connect to MySQL database and perform queries, the Inquirer package to interact with the user via the command line, and the console.table package to print MySQL rows to the console.
 
-Important: You will be committing a file that contains your database credentials. Make sure that your MySQL password is not used for any other personal accounts, because it will be visible on GitHub. In upcoming lessons, you will learn how to better secure this password, or you can start researching npm packages now that could help you.
 
-You might also want to make your queries asynchronous. MySQL2 exposes a .promise() function on Connections to upgrade an existing non-Promise connection to use Promises. To learn more and make your queries asynchronous, refer to the npm documentation on MySQL2 (Links to an external site.).
+The queries are asynchronous. MySQL2 exposes a .promise() function on Connections to upgrade an existing non-Promise connection to use Promises.
 
-Design the database schema as shown in the following image:
+The Database schema includes tables labeled “employee,” role,” and “department.”
 
-Database schema includes tables labeled “employee,” role,” and “department.”
-
-As the image illustrates, your schema should contain the following three tables:
+The schema contains the following three tables:
 
 department
 
@@ -71,5 +74,5 @@ role_id: INT to hold reference to employee role
 
 manager_id: INT to hold reference to another employee that is the manager of the current employee (null if the employee has no manager)
 
-You might want to use a separate file that contains functions for performing specific SQL queries you'll need to use. A constructor function or class could be helpful for organizing these. You might also want to include a seeds.sql file to pre-populate your database, making the development of individual features much easier.
+I usd a separate file that contains functions for performing specific SQL queries. A constructor function or class are helpful for organizing these. I also included a seeds.sql file to pre-populate my database, making the development of individual features much easier.
 
