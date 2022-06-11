@@ -146,6 +146,7 @@ function addemp() {
             })
     })
 }
+
 function addrol() {
     inquirer.prompt([
         {
@@ -176,6 +177,50 @@ function addrol() {
     ]).then(({ title, salary, department_id}) => {
         connection.query("insert into roles(title,salary,deparment_id) values(?,?,?);",
             [title, salary, department_id], function (err, data) {
+                if (err) console.log(err)
+                console.table(data)
+                init()
+            })
+    })
+}
+function updateEmpRol(){
+
+    inquirer.prompt([
+       
+        {
+            type: "list",
+            message: "Enter Employee role Id",
+            name: "role_id",
+            choices: [
+                { name: "Manager-IT", value: 1 },
+                { name: "Manager_Accounting", value: 2 },
+                { name: "Manager_Sales", value: 3 },
+                { name: "Manager_Marketing", value: 4 },
+                { name: "Intern-IT", value: 5 },
+                { name: "Intern_Accounting", value: 6 },
+                { name: "Intern_Sales", value: 7 },
+                { name: "Intern_Marketing", value: 8 },
+            ]
+        },
+        {
+            type: "list",
+            message: "Enter employee_id",
+            name: "employee_id",
+            choices: [
+                { name: "Henry Goldman", value: 1 },
+                { name: "Melvin Barr", value: 2 },
+                { name: "Randy Kamal", value: 3 },
+                { name: "Yasmin Malik", value: 4 },
+                { name: "Elvia Vreal", value: 5 },
+                { name: "Perla Smith", value: 6 },
+                { name: "Jean Pasco", value: 7 },
+                { name: "Mo Zanaty", value: 8 }
+            ]
+        },
+
+    ]).then(({ role_id, employee_id }) => {
+        connection.query("update employee set role_id=? where id=?; ",
+            [role_id, employee_id], function (err, data) {
                 if (err) console.log(err)
                 console.table(data)
                 init()
