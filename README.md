@@ -3,7 +3,7 @@
 This is a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 We, Developers, frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called content management systems (CMS). 
 
-Here is a [walkthrough video](coming soon) that demonstrates its functionality and all of the following acceptance criteria being met. 
+Here is a [walkthrough video](https://watch.screencastify.com/v/PyLTvt65uzGKD9udUwvl) that demonstrates its functionality and all of the following acceptance criteria being met. 
 
 User Story
 AS A business owner I WANT to be able to view and manage the departments, roles, and employees in my company
@@ -76,3 +76,5 @@ manager_id: INT to hold reference to another employee that is the manager of the
 
 I usd a separate file that contains functions for performing specific SQL queries. A constructor function or class are helpful for organizing these. I also included a seeds.sql file to pre-populate my database, making the development of individual features much easier.
 
+Developer:
+Mohammed Elzanaty
